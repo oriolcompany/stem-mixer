@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stem Mixer</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div>
+        <p class="eyebrow">Demucs · htdemucs</p>
+        <h1>Stem Mixer</h1>
+        <p class="lede">
+          Separa un MP3 en voces, batería, bajo y el resto. Escucha cada pista
+          sobre su sonograma, ajusta el volumen y exporta la mezcla.
+        </p>
+      </div>
+      <button id="openFile" type="button">Abrir audio</button>
+      <input id="file" type="file" accept=".mp3,.wav,.flac,.m4a,.ogg,.opus,audio/*" hidden />
+    </header>
+
+    <p id="banner" class="banner" hidden></p>
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <section id="drop" class="drop">
+      <p class="drop-title">Suelta aquí un archivo</p>
+      <p class="hint">MP3, WAV, FLAC, M4A, OGG u OPUS</p>
+    </section>
+
+    <section id="progress" class="progress" hidden>
+      <div class="progress-row">
+        <p id="progressLabel">Preparando…</p>
+        <p id="progressPct">0%</p>
+      </div>
+      <div class="progress-track" aria-hidden="true"><div id="progressBar"></div></div>
+    </section>
+
+    <section id="studio" hidden>
+      <div class="studio-head">
+        <h2 id="song"></h2>
+        <p class="hint">
+          Clic o arrastra el sonograma para saltar. Espacio reproduce o pausa.
+          Las flechas saltan 5 segundos.
+        </p>
+      </div>
+      <div class="transport">
+        <button id="play" type="button">Reproducir</button>
+        <span id="time">0:00</span>
+        <div id="scrub" class="scrub" role="slider" aria-label="Posición" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+          <div id="scrubFill"></div>
+        </div>
+        <span id="duration">0:00</span>
+      </div>
+      <div id="tracks"></div>
+      <div class="export-row">
+        <button id="export" type="button">Exportar mezcla MP3</button>
+        <p id="exportStatus"></p>
+      </div>
+    </section>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

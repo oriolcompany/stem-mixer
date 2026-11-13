@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stem-mixer"
+version = "0.1.0"
+description = "Separa un MP3 en stems, escúchalos sobre el sonograma y exporta la mezcla"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "python-multipart>=0.0.9",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+stems = [
+    "audio-separator[gpu]>=0.24",
+    "torchaudio>=2.1.0",
+]
+stems-cpu = [
+    "audio-separator[cpu]>=0.24",
+    "torchaudio>=2.1.0",
+]
+dev = [
+    "pytest>=8.0",
+    "httpx>=0.27",
+]
+
+[project.scripts]
+stem-mixer = "stem_mixer.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+stem_mixer = ["web/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
